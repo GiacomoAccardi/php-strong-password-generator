@@ -3,6 +3,14 @@
     $passwordLength = $_GET['passLength'];
     //var_dump($passwordLength);
 
+    //creo variabile contentente tutti i caratteri utilizzabili
+    $charList = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?~@#-_+<>[]{}';
+
+    //creo una variabile per contenere la nuova password
+    $generatedPass = '';
+
+    
+
 ?>
 
 <!DOCTYPE html>
