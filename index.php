@@ -1,34 +1,37 @@
 <?php
 
-    
-    $passwordLength = intval($_GET['passLength']);
-    var_dump($passwordLength);
-    //creo variabile contentente tutti i caratteri utilizzabili
-    $charList = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?~@#-_+<>[]{}';
+    $check = null;
 
-    function generatePassword($passwordLength, $charList){
-        //creo una variabile per contenere la nuova password
-        $password = '';   
-        $charListLength = strlen($charList);
+    if (isset($_GET['passLength'])) {
+        // Se esiste, prendi il valore e fallo diventare un intero
+        $passwordLength = intval($_GET['passLength']);
+        //creo variabile contentente tutti i caratteri utilizzabili
+        $charList = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!?~@#-_+<>[]{}';
 
-        // Genera una password lunga quanto specificato
-        for ($i = 0; $i < $passwordLength; $i++) {
-            // Seleziona un indice casuale dalla lista dei caratteri
-            $randomIndex = random_int(0, $charListLength - 1);
-            // Aggiunge il carattere corrispondente alla password
-            $password .= $charList[$randomIndex];
+        function generatePassword($passwordLength, $charList){
+            //creo una variabile per contenere la nuova password
+            $password = '';   
+            $charListLength = strlen($charList);
+
+            // Genera una password lunga quanto specificato
+            for ($i = 0; $i < $passwordLength; $i++) {
+                // Seleziona un indice casuale dalla lista dei caratteri
+                $randomIndex = random_int(0, $charListLength - 1);
+                // Aggiunge il carattere corrispondente alla password
+                $password .= $charList[$randomIndex];
+            }
+            return $password;
+        };
+
+        // Controlla che la lunghezza sia valida
+        if ($passwordLength > 5 && $passwordLength < 30) {
+            $generatedPassword = generatePassword($passwordLength, $charList);
+            $check = true;
+        } else {
+            $check = false;
         }
-        return $password;
-    };
-
-    // Controlla che la lunghezza sia valida
-    if (isset($passwordLength) && $passwordLength > 3 && $passwordLength < 18) {
-        $generatedPassword = generatePassword($passwordLength, $charList);
-        //echo "Password generata: " . $generatedPassword;
-        var_dump($generatedPassword);
-    } else {
-        echo "Inserisci una lunghezza valida.";
     }
+
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +84,24 @@
                                 
                                 <div class="row">
                                     <div class="col12">
+
                                     <!-- inserirò qui il risultato -->
+                                    <?php if($check == true){ ?>
+                                    
+                                        <div class="alert alert-success mt-5" role="alert">
+                                        La tua password è: <?php echo $generatedPassword ?>
+                                        </div>
+
+                                    <?php } else if($check == false) { ?>
+                                     
+                                        <div class="alert alert-danger mt-5" role="alert">
+                                        Inserisci un valore compreso tra 5 e 30!
+                                        </div>
+
+                                    <?php } else { 
+
+                                    }?>
+
                                     </div>
                                 </div>
                             </form>
