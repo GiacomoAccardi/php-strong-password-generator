@@ -1,5 +1,5 @@
 <?php
-
+    //variabile di controllo
     $check = null;
 
     if (isset($_GET['passLength'])) {
