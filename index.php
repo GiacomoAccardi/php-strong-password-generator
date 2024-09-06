@@ -1,5 +1,8 @@
 <?php
 
+    $passwordLength = $_GET['passLength'];
+    //var_dump($passwordLength);
+
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +23,7 @@
     <div class="wrapper vh-100 bg-dark">
 
         <header>
-            <nav class="navbar bg-body-secondary">
+            <nav class="navbar bg-body-secondary px-3">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                     <img src="https://d92mrp7hetgfk.cloudfront.net/images/sites/misc/Boolean/original.png?1623187562" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
@@ -40,13 +43,19 @@
                             <form action="./index.php" method="GET">
                                 <div class="row">
                                     <div class="col-8">
-                                        <label for="" class="mt-1">Inserisci il numero di caratteri desiderati per la lunghezza della password</label>
+                                        <label for="" class="mt-2">Inserisci il numero di caratteri desiderati per la lunghezza della password</label>
                                     </div>
                                     <div class="col-2">
-                                        <input type="text" id="disabledTextInput" class="form-control" placeholder="E.s: 8" class="length-select">
+                                        <input type="text" id="passLength" name="passLength" class="form-control" placeholder="E.s: 8" class="length-select" maxlength="2">
                                     </div>
                                     <div class="col-2">
-                                        <button type="button" class="btn btn-outline-primary">Genera</button>
+                                        <button type="submit" class="btn btn-outline-primary">Genera</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col12">
+                                    <!-- inserirò qui il risultato -->
                                     </div>
                                 </div>
                             </form>
